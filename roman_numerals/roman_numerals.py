@@ -1,0 +1,2 @@
+def loaded():
+    return True
