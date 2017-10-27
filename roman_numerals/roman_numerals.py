@@ -1,16 +1,10 @@
 def to_roman_numeral(number):
     if number >= 1000:
-        division = number / 1000
-        modulo = number % 1000
-        return division * 'M' + to_roman_numeral(modulo)
+        return (number / 1000) * 'M' + to_roman_numeral(number % 1000)
     if number >= 100:
-        division = number / 100
-        modulo = number % 100
-        return number_less_than_1400(division) + to_roman_numeral(modulo)
+        return number_less_than_1400(number / 100) + to_roman_numeral(number % 100)
     if number >= 10:
-        division = number / 10
-        modulo = number % 10
-        return number_less_than_140(division) + to_roman_numeral(modulo)
+        return number_less_than_140(number / 10) + to_roman_numeral(number % 10)
     else:
         return number_less_than_14(number)
 
