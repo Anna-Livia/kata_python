@@ -6,6 +6,7 @@ Each directory contains the Kata's instructions, a Python script and a `test_` f
 
 ## Available Katas
  - [Kata Potter](http://codingdojo.org/kata/Potter/)
+ - [Roman Numerals](http://codingdojo.org/kata/RomanNumerals/)
 
 ## Install
 
