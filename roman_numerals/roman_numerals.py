@@ -1,53 +1,11 @@
 def to_roman_numeral(number):
-    if number >= 1000:
-        return (number / 1000) * 'M' + to_roman_numeral(number % 1000)
-    if number >= 100:
-        return number_less_than_1400(number / 100) + to_roman_numeral(number % 100)
-    if number >= 10:
-        return number_less_than_140(number / 10) + to_roman_numeral(number % 10)
-    else:
-        return number_less_than_14(number)
+    decimal_to_romans = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
+    romans = ["I", "V", "X", "L", "C", "D", "M"]
+    if number in decimal_to_romans:
+        return decimal_to_romans[number]
+    elif number + 1 in decimal_to_romans:
+        switch_index = romans.index(decimal_to_romans[number + 1]) - 1
+        switch = romans[switch_index]
+        return switch + decimal_to_romans[number]
 
-
-def number_less_than_1400(number):
-    a = "C"
-    b = "D"
-    c = "M"
-    roman_value = {a: 1, b: 5, c: 10}
-    romans = {a: range(0, 4), b: range(4, 9), c: range(9, 14)}
-    return calculate(number, roman_value, romans, "C")
-
-
-def number_less_than_140(number):
-    a = "X"
-    b = "L"
-    c = "C"
-    roman_value = {a: 1, b: 5, c: 10}
-    romans = {a: range(0, 4), b: range(4, 9), c: range(9, 14)}
-    return calculate(number, roman_value, romans, "X")
-
-
-def number_less_than_14(number):
-    a = "0"
-    b = "V"
-    c = "X"
-    roman_value = {a: 0, b: 5, c: 10}
-    romans = {a: range(0, 4), b: range(4, 9), c: range(9, 14)}
-    return calculate(number, roman_value, romans, "I")
-
-
-def calculate(number, roman_value, romans, switch):
-    for roman, decimal_values in romans.items():
-        if number in decimal_values:
-            structure_base = [roman]
-            break
-    # structure_base = ["V"]
-    if number == roman_value[roman] - 1:
-        structure_base.insert(0, switch)
-    else:
-        structure_base.append(switch * (number - roman_value[roman]))
-    if "0" in structure_base :
-        structure_base = [x for x in structure_base if (x != "0")]
-
-    return ''.join(structure_base)
-
+print to_roman_numeral(4)
